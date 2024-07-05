@@ -24,6 +24,11 @@ public class ConsultaMoeda {
             HttpResponse<String> response = HttpClient
                     .newHttpClient()
                     .send(request, HttpResponse.BodyHandlers.ofString());
+
+            if(response.statusCode() != 200) {
+                throw new RuntimeException("Not Found");
+            }
+
             return gson.fromJson(response.body(), Moeda.class);
         } catch (Exception e) {
             throw new RuntimeException("Não consegui obter o valor dessa moeda!");
