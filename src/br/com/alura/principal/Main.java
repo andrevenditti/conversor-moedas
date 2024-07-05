@@ -1,10 +1,7 @@
 package br.com.alura.principal;
 
 import br.com.alura.model.Cambio;
-import br.com.alura.model.ConsultaMoeda;
-import br.com.alura.model.Moeda;
-
-import java.util.Optional;
+import br.com.alura.model.Menu;
 import java.util.Scanner;
 
 public class Main {
@@ -13,49 +10,40 @@ public class Main {
         int option = 0;
         double valorParaConverter;
 
-        System.out.println("*************************************");
-        System.out.println("Seja vem-vindo ao conversor de moedas: \n");
-        System.out.println("1) Dolar =>> Peso argentino");
-        System.out.println("2) Peso argentino =>> Dolar");
-        System.out.println("3) Dolar =>> Real Brasileiro");
-        System.out.println("4) Real brasileiro =>> Dolar");
-        System.out.println("5) Dolar =>> Peso colombiano");
-        System.out.println("6) Peso colombiano =>> Dolar");
-        System.out.println("7) Sair\n");
-        System.out.println("Escolha uma opção válida:");
-        System.out.println("*************************************\n\n");
-        option = input.nextInt();
+        while (option != 7) {
 
-        System.out.println("Digite o valor a ser convertido: ");
-        valorParaConverter = input.nextDouble();
+            Menu menu = new Menu();
+            menu.CriacaoMenu();
+            option = input.nextInt();
 
-        Cambio cambio = new Cambio();
-        String respostaCambio;
-        switch (option) {
-            case 1:
-                respostaCambio = cambio.ConverterMoeda("USD", "ARS", valorParaConverter);
-                System.out.println(respostaCambio);
+            if(option == 7) {
                 break;
-            case 2:
-                respostaCambio = cambio.ConverterMoeda("ARS","USD", valorParaConverter);
-                System.out.println(respostaCambio);
-                break;
-            case 3:
-                respostaCambio = cambio.ConverterMoeda("USD","BRL", valorParaConverter);
-                System.out.println(respostaCambio);
-                break;
-            case 4:
-                respostaCambio = cambio.ConverterMoeda("BRL","USD", valorParaConverter);
-                System.out.println(respostaCambio);
-                break;
-            case 5:
-                respostaCambio = cambio.ConverterMoeda("USD","COP", valorParaConverter);
-                System.out.println(respostaCambio);
-                break;
-            case 6:
-                respostaCambio = cambio.ConverterMoeda("COP","USD", valorParaConverter);
-                System.out.println(respostaCambio);
-                break;
+            }
+
+            System.out.println("Digite o valor a ser convertido: ");
+            valorParaConverter = input.nextDouble();
+
+            Cambio cambio = new Cambio();
+            switch (option) {
+                case 1:
+                    cambio.ConverterMoeda("USD", "ARS", valorParaConverter);
+                    break;
+                case 2:
+                    cambio.ConverterMoeda("ARS","USD", valorParaConverter);
+                    break;
+                case 3:
+                    cambio.ConverterMoeda("USD","BRL", valorParaConverter);
+                    break;
+                case 4:
+                    cambio.ConverterMoeda("BRL","USD", valorParaConverter);
+                    break;
+                case 5:
+                    cambio.ConverterMoeda("USD","COP", valorParaConverter);
+                    break;
+                case 6:
+                    cambio.ConverterMoeda("COP","USD", valorParaConverter);
+                    break;
+            }
         }
     }
 }
